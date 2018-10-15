@@ -5,23 +5,23 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : syntax-highlighting
-Version  : 5.50.0
-Release  : 5
-URL      : https://download.kde.org/stable/frameworks/5.50/syntax-highlighting-5.50.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.50/syntax-highlighting-5.50.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.50/syntax-highlighting-5.50.0.tar.xz.sig
+Version  : 5.51.0
+Release  : 6
+URL      : https://download.kde.org/stable/frameworks/5.51/syntax-highlighting-5.51.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.51/syntax-highlighting-5.51.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.51/syntax-highlighting-5.51.0.tar.xz.sig
 Summary  : Recorder for internet radios (based on Streamripper)
 Group    : Development/Tools
 License  : MIT
-Requires: syntax-highlighting-bin
-Requires: syntax-highlighting-lib
-Requires: syntax-highlighting-license
-Requires: syntax-highlighting-data
+Requires: syntax-highlighting-bin = %{version}-%{release}
+Requires: syntax-highlighting-data = %{version}-%{release}
+Requires: syntax-highlighting-lib = %{version}-%{release}
+Requires: syntax-highlighting-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : buildreq-meson
 BuildRequires : perl
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 # Syntax Highlighting
@@ -31,8 +31,8 @@ Syntax highlighting engine for Kate syntax definitions
 %package bin
 Summary: bin components for the syntax-highlighting package.
 Group: Binaries
-Requires: syntax-highlighting-data
-Requires: syntax-highlighting-license
+Requires: syntax-highlighting-data = %{version}-%{release}
+Requires: syntax-highlighting-license = %{version}-%{release}
 
 %description bin
 bin components for the syntax-highlighting package.
@@ -49,10 +49,10 @@ data components for the syntax-highlighting package.
 %package dev
 Summary: dev components for the syntax-highlighting package.
 Group: Development
-Requires: syntax-highlighting-lib
-Requires: syntax-highlighting-bin
-Requires: syntax-highlighting-data
-Provides: syntax-highlighting-devel
+Requires: syntax-highlighting-lib = %{version}-%{release}
+Requires: syntax-highlighting-bin = %{version}-%{release}
+Requires: syntax-highlighting-data = %{version}-%{release}
+Provides: syntax-highlighting-devel = %{version}-%{release}
 
 %description dev
 dev components for the syntax-highlighting package.
@@ -61,8 +61,8 @@ dev components for the syntax-highlighting package.
 %package lib
 Summary: lib components for the syntax-highlighting package.
 Group: Libraries
-Requires: syntax-highlighting-data
-Requires: syntax-highlighting-license
+Requires: syntax-highlighting-data = %{version}-%{release}
+Requires: syntax-highlighting-license = %{version}-%{release}
 
 %description lib
 lib components for the syntax-highlighting package.
@@ -77,25 +77,25 @@ license components for the syntax-highlighting package.
 
 
 %prep
-%setup -q -n syntax-highlighting-5.50.0
+%setup -q -n syntax-highlighting-5.51.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536439254
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1539620763
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1536439254
+export SOURCE_DATE_EPOCH=1539620763
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/syntax-highlighting
-cp COPYING %{buildroot}/usr/share/doc/syntax-highlighting/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/syntax-highlighting
+cp COPYING %{buildroot}/usr/share/package-licenses/syntax-highlighting/COPYING
 pushd clr-build
 %make_install
 popd
@@ -226,8 +226,8 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5SyntaxHighlighting.so.5
-/usr/lib64/libKF5SyntaxHighlighting.so.5.50.0
+/usr/lib64/libKF5SyntaxHighlighting.so.5.51.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/syntax-highlighting/COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/syntax-highlighting/COPYING
