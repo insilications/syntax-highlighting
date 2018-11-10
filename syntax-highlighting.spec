@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : syntax-highlighting
-Version  : 5.51.0
-Release  : 7
-URL      : https://download.kde.org/stable/frameworks/5.51/syntax-highlighting-5.51.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.51/syntax-highlighting-5.51.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.51/syntax-highlighting-5.51.0.tar.xz.sig
+Version  : 5.52.0
+Release  : 8
+URL      : https://download.kde.org/stable/frameworks/5.52/syntax-highlighting-5.52.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.52/syntax-highlighting-5.52.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.52/syntax-highlighting-5.52.0.tar.xz.sig
 Summary  : Recorder for internet radios (based on Streamripper)
 Group    : Development/Tools
 License  : MIT
@@ -27,6 +27,14 @@ BuildRequires : qtbase-dev mesa-dev
 # Syntax Highlighting
 Syntax highlighting engine for Kate syntax definitions
 ## Introduction
+
+%package abi
+Summary: abi components for the syntax-highlighting package.
+Group: Default
+
+%description abi
+abi components for the syntax-highlighting package.
+
 
 %package bin
 Summary: bin components for the syntax-highlighting package.
@@ -77,14 +85,14 @@ license components for the syntax-highlighting package.
 
 
 %prep
-%setup -q -n syntax-highlighting-5.51.0
+%setup -q -n syntax-highlighting-5.52.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539643566
+export SOURCE_DATE_EPOCH=1541881144
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -92,7 +100,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1539643566
+export SOURCE_DATE_EPOCH=1541881144
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/syntax-highlighting
 cp COPYING %{buildroot}/usr/share/package-licenses/syntax-highlighting/COPYING
@@ -103,6 +111,10 @@ popd
 %files
 %defattr(-,root,root,-)
 
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libKF5SyntaxHighlighting.so.5.52.0.abi
+
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/kate-syntax-highlighter
@@ -111,7 +123,6 @@ popd
 %defattr(-,root,root,-)
 /usr/share/locale/af/LC_MESSAGES/syntaxhighlighting5_qt.qm
 /usr/share/locale/ar/LC_MESSAGES/syntaxhighlighting5_qt.qm
-/usr/share/locale/ast/LC_MESSAGES/syntaxhighlighting5_qt.qm
 /usr/share/locale/be/LC_MESSAGES/syntaxhighlighting5_qt.qm
 /usr/share/locale/bg/LC_MESSAGES/syntaxhighlighting5_qt.qm
 /usr/share/locale/bn/LC_MESSAGES/syntaxhighlighting5_qt.qm
@@ -226,7 +237,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5SyntaxHighlighting.so.5
-/usr/lib64/libKF5SyntaxHighlighting.so.5.51.0
+/usr/lib64/libKF5SyntaxHighlighting.so.5.52.0
 
 %files license
 %defattr(0644,root,root,0755)
