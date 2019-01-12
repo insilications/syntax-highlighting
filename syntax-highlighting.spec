@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : syntax-highlighting
-Version  : 5.53.0
-Release  : 11
-URL      : https://download.kde.org/stable/frameworks/5.53/syntax-highlighting-5.53.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.53/syntax-highlighting-5.53.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.53/syntax-highlighting-5.53.0.tar.xz.sig
-Summary  : Recorder for internet radios (based on Streamripper)
+Version  : 5.54.0
+Release  : 12
+URL      : https://download.kde.org/stable/frameworks/5.54/syntax-highlighting-5.54.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.54/syntax-highlighting-5.54.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.54/syntax-highlighting-5.54.0.tar.xz.sig
+Summary  : Syntax highlighting engine for structured text and code
 Group    : Development/Tools
 License  : MIT
 Requires: syntax-highlighting-bin = %{version}-%{release}
@@ -77,14 +77,14 @@ license components for the syntax-highlighting package.
 
 
 %prep
-%setup -q -n syntax-highlighting-5.53.0
+%setup -q -n syntax-highlighting-5.54.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544549131
+export SOURCE_DATE_EPOCH=1547319969
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -92,7 +92,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1544549131
+export SOURCE_DATE_EPOCH=1547319969
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/syntax-highlighting
 cp COPYING %{buildroot}/usr/share/package-licenses/syntax-highlighting/COPYING
@@ -225,7 +225,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5SyntaxHighlighting.so.5
-/usr/lib64/libKF5SyntaxHighlighting.so.5.53.0
+/usr/lib64/libKF5SyntaxHighlighting.so.5.54.0
 
 %files license
 %defattr(0644,root,root,0755)
