@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : syntax-highlighting
-Version  : 5.57.0
-Release  : 17
-URL      : https://download.kde.org/stable/frameworks/5.57/syntax-highlighting-5.57.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.57/syntax-highlighting-5.57.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.57/syntax-highlighting-5.57.0.tar.xz.sig
+Version  : 5.58.0
+Release  : 18
+URL      : https://download.kde.org/stable/frameworks/5.58/syntax-highlighting-5.58.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.58/syntax-highlighting-5.58.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.58/syntax-highlighting-5.58.0.tar.xz.sig
 Summary  : Syntax highlighting engine for structured text and code
 Group    : Development/Tools
 License  : MIT
@@ -54,6 +54,7 @@ Requires: syntax-highlighting-bin = %{version}-%{release}
 Requires: syntax-highlighting-data = %{version}-%{release}
 Provides: syntax-highlighting-devel = %{version}-%{release}
 Requires: syntax-highlighting = %{version}-%{release}
+Requires: syntax-highlighting = %{version}-%{release}
 
 %description dev
 dev components for the syntax-highlighting package.
@@ -78,14 +79,14 @@ license components for the syntax-highlighting package.
 
 
 %prep
-%setup -q -n syntax-highlighting-5.57.0
+%setup -q -n syntax-highlighting-5.58.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557049629
+export SOURCE_DATE_EPOCH=1557765588
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -100,7 +101,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557049629
+export SOURCE_DATE_EPOCH=1557765588
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/syntax-highlighting
 cp COPYING %{buildroot}/usr/share/package-licenses/syntax-highlighting/COPYING
@@ -235,7 +236,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5SyntaxHighlighting.so.5
-/usr/lib64/libKF5SyntaxHighlighting.so.5.57.0
+/usr/lib64/libKF5SyntaxHighlighting.so.5.58.0
 
 %files license
 %defattr(0644,root,root,0755)
