@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : syntax-highlighting
-Version  : 5.69.0
-Release  : 30
-URL      : https://download.kde.org/stable/frameworks/5.69/syntax-highlighting-5.69.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.69/syntax-highlighting-5.69.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.69/syntax-highlighting-5.69.0.tar.xz.sig
-Summary  : Syntax highlighting engine for structured text and code
+Version  : 5.70.0
+Release  : 31
+URL      : https://download.kde.org/stable/frameworks/5.70/syntax-highlighting-5.70.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.70/syntax-highlighting-5.70.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.70/syntax-highlighting-5.70.0.tar.xz.sig
+Summary  : Recorder for internet radios (based on Streamripper)
 Group    : Development/Tools
 License  : MIT
 Requires: syntax-highlighting-bin = %{version}-%{release}
@@ -20,6 +20,7 @@ Requires: syntax-highlighting-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : buildreq-meson
+BuildRequires : extra-cmake-modules-data
 BuildRequires : perl
 BuildRequires : qtbase-dev mesa-dev
 
@@ -54,7 +55,6 @@ Requires: syntax-highlighting-bin = %{version}-%{release}
 Requires: syntax-highlighting-data = %{version}-%{release}
 Provides: syntax-highlighting-devel = %{version}-%{release}
 Requires: syntax-highlighting = %{version}-%{release}
-Requires: syntax-highlighting = %{version}-%{release}
 
 %description dev
 dev components for the syntax-highlighting package.
@@ -79,35 +79,34 @@ license components for the syntax-highlighting package.
 
 
 %prep
-%setup -q -n syntax-highlighting-5.69.0
-cd %{_builddir}/syntax-highlighting-5.69.0
+%setup -q -n syntax-highlighting-5.70.0
+cd %{_builddir}/syntax-highlighting-5.70.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1586897041
+export SOURCE_DATE_EPOCH=1589209778
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1586897041
+export SOURCE_DATE_EPOCH=1589209778
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/syntax-highlighting
-cp %{_builddir}/syntax-highlighting-5.69.0/COPYING %{buildroot}/usr/share/package-licenses/syntax-highlighting/ed938678eaa4f37c45a62a0a3bf65b85547f0a2a
+cp %{_builddir}/syntax-highlighting-5.70.0/COPYING %{buildroot}/usr/share/package-licenses/syntax-highlighting/ed938678eaa4f37c45a62a0a3bf65b85547f0a2a
 pushd clr-build
 %make_install
 popd
@@ -239,7 +238,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5SyntaxHighlighting.so.5
-/usr/lib64/libKF5SyntaxHighlighting.so.5.69.0
+/usr/lib64/libKF5SyntaxHighlighting.so.5.70.0
 
 %files license
 %defattr(0644,root,root,0755)
