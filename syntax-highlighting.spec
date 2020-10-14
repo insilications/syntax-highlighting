@@ -5,14 +5,14 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : syntax-highlighting
-Version  : 5.73.0
-Release  : 33
-URL      : https://download.kde.org/stable/frameworks/5.73/syntax-highlighting-5.73.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.73/syntax-highlighting-5.73.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.73/syntax-highlighting-5.73.0.tar.xz.sig
+Version  : 5.75.0
+Release  : 34
+URL      : https://download.kde.org/stable/frameworks/5.75/syntax-highlighting-5.75.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.75/syntax-highlighting-5.75.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.75/syntax-highlighting-5.75.0.tar.xz.sig
 Summary  : Recorder for internet radios (based on Streamripper)
 Group    : Development/Tools
-License  : MIT
+License  : GPL-2.0 LGPL-2.0 LGPL-2.1 MIT
 Requires: syntax-highlighting-bin = %{version}-%{release}
 Requires: syntax-highlighting-data = %{version}-%{release}
 Requires: syntax-highlighting-lib = %{version}-%{release}
@@ -20,6 +20,7 @@ Requires: syntax-highlighting-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : buildreq-meson
+BuildRequires : buildreq-qmake
 BuildRequires : extra-cmake-modules-data
 BuildRequires : perl
 BuildRequires : qtbase-dev mesa-dev
@@ -79,15 +80,15 @@ license components for the syntax-highlighting package.
 
 
 %prep
-%setup -q -n syntax-highlighting-5.73.0
-cd %{_builddir}/syntax-highlighting-5.73.0
+%setup -q -n syntax-highlighting-5.75.0
+cd %{_builddir}/syntax-highlighting-5.75.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1597711798
+export SOURCE_DATE_EPOCH=1602635328
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -103,10 +104,14 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1597711798
+export SOURCE_DATE_EPOCH=1602635328
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/syntax-highlighting
-cp %{_builddir}/syntax-highlighting-5.73.0/COPYING %{buildroot}/usr/share/package-licenses/syntax-highlighting/ed938678eaa4f37c45a62a0a3bf65b85547f0a2a
+cp %{_builddir}/syntax-highlighting-5.75.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/syntax-highlighting/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/syntax-highlighting-5.75.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/syntax-highlighting/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/syntax-highlighting-5.75.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/syntax-highlighting/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/syntax-highlighting-5.75.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/syntax-highlighting/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/syntax-highlighting-5.75.0/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/syntax-highlighting/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
 pushd clr-build
 %make_install
 popd
@@ -240,8 +245,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5SyntaxHighlighting.so.5
-/usr/lib64/libKF5SyntaxHighlighting.so.5.73.0
+/usr/lib64/libKF5SyntaxHighlighting.so.5.75.0
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/syntax-highlighting/ed938678eaa4f37c45a62a0a3bf65b85547f0a2a
+/usr/share/package-licenses/syntax-highlighting/20079e8f79713dce80ab09774505773c926afa2a
+/usr/share/package-licenses/syntax-highlighting/2a638514c87c4923c0570c55822620fad56f2a33
+/usr/share/package-licenses/syntax-highlighting/6f1f675aa5f6a2bbaa573b8343044b166be28399
+/usr/share/package-licenses/syntax-highlighting/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
