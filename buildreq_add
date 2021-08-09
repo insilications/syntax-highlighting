@@ -1,2 +1,10 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
+buildreq-cmake
+buildreq-distutils3
+buildreq-kde
+buildreq-meson
+buildreq-qmake
+extra-cmake-modules-data
+perl
+qtbase-dev mesa-dev
