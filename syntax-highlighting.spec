@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : syntax-highlighting
 Version  : 5.83.0
-Release  : 42
+Release  : 43
 URL      : https://download.kde.org/stable/frameworks/5.83/syntax-highlighting-5.83.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.83/syntax-highlighting-5.83.0.tar.xz
 Summary  : Recorder for internet radios (based on Streamripper)
@@ -25,7 +25,7 @@ BuildRequires : qtbase-dev mesa-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
-Patch1: 0001-Add-clrpackages-syntax.patch
+Patch1: 0001-Add-clrpackages.patch
 
 %description
 # Syntax Highlighting
@@ -82,7 +82,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1628479086
+export SOURCE_DATE_EPOCH=1628732980
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -193,7 +193,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1628479086
+export SOURCE_DATE_EPOCH=1628732980
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
