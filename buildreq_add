@@ -7,4 +7,4 @@ buildreq-meson
 buildreq-qmake
 extra-cmake-modules-data
 perl
-qtbase-dev mesa-dev
+qtbase-dev
